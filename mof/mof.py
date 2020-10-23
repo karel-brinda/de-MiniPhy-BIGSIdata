@@ -7,16 +7,35 @@ import datetime
 import ete3
 import lzma
 import os
+import pathlib
 import re
 import subprocess
 import sys
 import tarfile
 import lzma
 
+
+GITDIR = os.path.basename(sys.argv[0])[-3:] == ".py"
+if GITDIR:
+    HERE = pathlib.Path(os.path.abspath(os.path.dirname(sys.argv[0])))
+else:
+    HERE = pathlib.Path(os.path.abspath(os.path.dirname(os.path.realpath(__file__))))
+
+sys.path.append(os.path.dirname(__file__))
+
+
+#HERE = pathlib.Path(__file__).parent.resolve()
+#HERE = pathlib.Path(sys.path[0])
+#HERE = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
+
 EXAMPLE_ACC = "ERR486847"
-CLUSTERS_FN = "data/clusters.tar.gz"
-URLS_FN = "data/downloads.tsv"
-TREES_FN = "data/trees.tar.gz"
+
+#CLUSTERS_FN=pkg_resources.resource_filename('wof', 'data/clusters.tar.gz')
+#URLS_FN=pkg_resources.resource_filename('wof', 'data/downloads.tsv')
+#TREES_FN=pkg_resources.resource_filename('wof', 'data/trees.tar.gz')
+CLUSTERS_FN = HERE / "data/clusters.tar.gz"
+URLS_FN = HERE / "data/downloads.tsv"
+TREES_FN = HERE / "data/trees.tar.gz"
 
 ##################
 # Aux functions
