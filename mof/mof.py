@@ -220,7 +220,10 @@ def _compress_nodes(dn):
 def _complete_nodes(dn, tree):
     log(f"Completing empty blocks")
     node_names = [f"node_{x.name}.fa.gz" for x in tree.traverse()]
-    shell("touch {}".format(" ".join(node_names)), dn)
+    n = 500
+    touch_groups = [node_names[i:i + n] for i in range(0, len(node_names), n)]
+    for x in touch_groups:
+        shell("touch {}".format(" ".join(x)), dn)
 
 
 #def _tar_node(dn, name):
