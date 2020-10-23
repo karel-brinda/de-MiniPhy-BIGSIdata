@@ -259,11 +259,11 @@ def _build_one(cluster):
 
     def _process_node(node, stack):
         name = node.name
-        log(f"Processing {name}")
 
         fn = f"cache/blocks/{cluster}/node_{name}.fa.gz"
         stack.append(_bytes_from_file(fn))
         if node.is_leaf():
+            log(f"Creating {name}.fa.gz")
             with open(f"{directory}/{name}.fa.gz", "wb+") as f:
                 for y in stack:
                     f.write(y)
@@ -393,6 +393,7 @@ def main():
         fetch_cluster_files(objects=args.what)
         prep(objects=args.what)
         build(objects=args.what)
+    log("MoF successfully finished")
 
 
 if __name__ == "__main__":
