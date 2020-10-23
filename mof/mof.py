@@ -1,28 +1,25 @@
 #! /usr/bin/env python3
 
 import argparse
-import collections
 import copy
 import datetime
-import ete3
 import lzma
 import os
 import pathlib
-import re
 import subprocess
 import sys
 import tarfile
-import lzma
 
+import ete3
 
 GITDIR = os.path.basename(sys.argv[0])[-3:] == ".py"
 if GITDIR:
     HERE = pathlib.Path(os.path.abspath(os.path.dirname(sys.argv[0])))
 else:
-    HERE = pathlib.Path(os.path.abspath(os.path.dirname(os.path.realpath(__file__))))
+    HERE = pathlib.Path(
+        os.path.abspath(os.path.dirname(os.path.realpath(__file__))))
 
 sys.path.append(os.path.dirname(__file__))
-
 
 #HERE = pathlib.Path(__file__).parent.resolve()
 #HERE = pathlib.Path(sys.path[0])
