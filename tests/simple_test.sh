@@ -4,4 +4,4 @@ set -e
 set -o pipefail
 set -u
 
-../mof get lassa_virus__01
+../mof.sh get lassa_virus__01
