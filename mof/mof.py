@@ -44,11 +44,18 @@ def log(*args):
     print(f"[{dt}]", *args, file=sys.stderr)
 
 
+def error(*args):
+    dt = datetime.datetime.now()
+    print(f"[{dt}] Error:", *args, file=sys.stderr)
+
+
 def shell(cmd, directory="."):
-    wrap = f'set -o pipefail; mkdir -p "{directory}" && (cd "{directory}" && ({cmd}))'
+    wrap = f'set -eo pipefail; mkdir -p "{directory}" && (cd "{directory}" && ({cmd}))'
     log("Running:", wrap)
     return_code = subprocess.call([f'/bin/bash', '-c', wrap])
-    return return_code
+    if return_code != 0:
+        error(f"Command '{cmd}' failed")
+        sys.exit(return_code)
 
 
 def is_file(fn):
