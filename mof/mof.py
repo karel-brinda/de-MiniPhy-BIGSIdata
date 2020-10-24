@@ -214,7 +214,7 @@ def _split_xz(fn, directory):
 
 def _compress_nodes(dn):
     log(f"Compressing node block fasta files")
-    shell('find . -name "*.fa" | parallel gzip -fv', dn)
+    shell('find . -name "*.fa" | parallel --progress gzip -fv', dn)
 
 
 def _complete_nodes(dn, tree):
