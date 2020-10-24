@@ -1,4 +1,4 @@
-.PHONY: all help clean cleanall pypi install test
+.PHONY: all help clean cleanall pypi install test edit
 
 SHELL=/usr/bin/env bash -eo pipefail
 PIP=/usr/bin/env pip
@@ -29,3 +29,6 @@ cleanall: clean ## Clean all
 
 test:
 	$(MAKE) -C tests
+
+edit:
+	nvim mof/mof.py
