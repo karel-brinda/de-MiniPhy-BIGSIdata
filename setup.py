@@ -9,6 +9,8 @@ import sys
 
 from setuptools import setup, find_packages
 
+exec(open("mof/version.py").read())
+
 if sys.version_info < (3, 5):
     sys.exit('Minimum supported Python version is 3.5')
 
@@ -18,7 +20,7 @@ here = pathlib.Path(__file__).parent.resolve()
 
 setup(
     name="mof",
-    version="0.1.0",
+    version=VERSION,
     description="mof",
     author='Karel Brinda',
     author_email="karel.brinda@gmail.com",
