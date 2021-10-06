@@ -161,9 +161,9 @@ def download_cluster(cluster):
     #print(du)
     print(cluster)
     url = du[cluster]
-    cmd = f'wget --continue "{url}"'
-    shell(cmd, "cache/downloads")
     fn = f"{cluster}.fa.xz"
+    cmd = f'wget "{url}" -O "{fn}"'
+    shell(cmd, "cache/downloads")
     if not is_file(f"{fn}.md5"):
         compute_md5(fn)
     #check_download_md5(fn)
@@ -312,10 +312,8 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=desc1)
 
-    subparsers = parser.add_subparsers(title='commands',
-                                       description=desc2,
-                                       help='',
-                                       dest='cmd')
+    subparsers = parser.add_subparsers(
+        title='commands', description=desc2, help='', dest='cmd')
     subparsers.required = True
 
     #parser.add_argument("-v", ...)
